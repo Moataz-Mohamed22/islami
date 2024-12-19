@@ -1,0 +1,12 @@
+flutter_native_splash:
+  color: "#ffffff" # لون الخلفية
+  image: assets/images/splash_screen.png # مسار الصورة
+
+  android_12:
+    image: assets/images/splash_screen.png # مسار الصورة لـ Android 12
+    fullscreen: true
+
+
+
+
+
