@@ -1,10 +1,19 @@
+# flutter_native_splash-development.yaml
 flutter_native_splash:
-  color: "#ffffff" # لون الخلفية
-  image: assets/images/splash_screen.png # مسار الصورة
+  color: "#202020"
+  image: assets/images/splash_Screen.png
+  branding: assets/images/routegold.png
+  color_dark: "#202020"
+  image_dark: assets/images/splash_Screen.png
+  branding_dark: assets/images/routegold.png
 
   android_12:
-    image: assets/images/splash_screen.png # مسار الصورة لـ Android 12
-    fullscreen: true
+    image: assets/images/splash_Screen.png
+    branding: assets/images/routegold.png
+    icon_background_color: "#202020"
+    image_dark: assets/images/splash_Screen.png
+    icon_background_color_dark: "#202020"
+    branding_dark: assets/images/routegold.png
 
 
 
