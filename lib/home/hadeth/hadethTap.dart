@@ -1,96 +1,102 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:islami/utils/appColors.dart';
-import 'package:islami/home/hadeth/hadethDetalis.dart';
-import 'package:islami/model/hadetModel.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Hadethtap extends StatefulWidget {
+import '../../model/hadetModel.dart';
+import '../../utils/appColors.dart';
+import 'cubit/hadeth_state.dart';
+import 'cubit/hadeth_view_model.dart';
+import 'hadethDetalis.dart';
+
+
+class HadethTap extends StatefulWidget {
+  const HadethTap({super.key});
+
   @override
-  State<Hadethtap> createState() => _HadethtapState();
+  State<HadethTap> createState() => _HadethTapState();
 }
 
-class _HadethtapState extends State<Hadethtap> {
-  List<HadethModel> hadethList = [];
-
-  @override
-  void initState() {
-    super.initState();
-    loadHadethFile();
-  }
-
+class _HadethTapState extends State<HadethTap> {
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-
-    return Container(
-        child: Column(
-      children: [
-        Image.asset(
-          "assets/images/Logo_quran.png",
+    return BlocProvider(
+      create: (_) => HadethCubit(),
+      child: Scaffold(
+        body: Column(
+          children: [
+            _buildHeaderImage(),
+            Expanded(child: _buildHadethContent()),
+          ],
         ),
-        hadethList.isEmpty
-            ? Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.primaryDark,
-                ),
-              )
-            : CarouselSlider.builder(
-                itemCount: hadethList.length,
-                options: CarouselOptions(
-                    height: height * 0.63,
-                    viewportFraction: 0.75,
-                    enableInfiniteScroll: true,
-                    enlargeCenterPage: true),
-                itemBuilder: (BuildContext, int itemIndex, int pedgViewIndex) {
-                  return InkWell(
-                    onTap: () {
-                      Navigator.of(context).pushNamed(HadethDetalis.routeName,
-                          arguments: hadethList[itemIndex]);
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: AppColors.primaryDark,
-                          image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: AssetImage("assets/images/HadethBg.png"),
-                          )),
-                      child: Column(
-                        children: [
-                          Text(
-                            hadethList[itemIndex].titel,
-                            style: TextStyle(
-                                color: AppColors.blackColor, fontSize: 24),
-                          ),
-                          Expanded(
-                              child: Text(
-                            hadethList[itemIndex].Content.join(""),
-                            style: TextStyle(fontSize: 18),
-                          ))
-                        ],
-                      ),
-                    ),
-                  );
-                }),
-      ],
-    ));
+      ),
+    );
   }
 
-  Future<void> loadHadethFile() async {
-    for (int i = 1; i <= 50; i++) {
-      String hadethContent =
-          await rootBundle.loadString("assets/files/Hadeeth/h$i.txt");
-      List<String> hadethLines = hadethContent.split("\n");
-      for (String line in hadethLines) {
-        print(line);
-      }
-      String titel = hadethLines[0];
-      hadethLines.removeAt(0);
-      HadethModel hadethModel = HadethModel(titel: titel, Content: hadethLines);
-      hadethList.add(hadethModel);
-      setState(() {});
-    }
+  Widget _buildHeaderImage() {
+    return Image.asset('assets/images/Logo_quran.png');
+  }
+
+  Widget _buildHadethContent() {
+    return BlocBuilder<HadethCubit, HadethState>(
+      builder: (context, state) {
+        if (state is HadethLoading) {
+          return const Center(
+            child: CircularProgressIndicator(color: AppColors.primaryDark),
+          );
+        } else if (state is HadethLoaded) {
+          return _buildCarousel(state.hadethList);
+        } else if (state is HadethError) {
+          return Center(child: Text(state.message));
+        }
+        return const SizedBox.shrink();
+      },
+    );
+  }
+
+  Widget _buildCarousel(List<HadethModel> hadethList) {
+    return CarouselSlider.builder(
+      itemCount: hadethList.length,
+      options: CarouselOptions(
+       height: MediaQuery.of(context).size.height * 0.63,
+        viewportFraction: 0.75,
+        enableInfiniteScroll: true,
+        enlargeCenterPage: true,
+      ),
+      itemBuilder: (context, index, _) => _buildCarouselItem(context, hadethList[index]),
+    );
+  }
+
+  Widget _buildCarouselItem(BuildContext context, HadethModel hadeth) {
+    return InkWell(
+      onTap: () => Navigator.of(context).pushNamed(
+        HadethDetails.routeName,
+        arguments: hadeth,
+      ),
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: AppColors.primaryDark,
+          image: const DecorationImage(
+            fit: BoxFit.fill,
+            image: AssetImage('assets/images/HadethBg.png'),
+          ),
+        ),
+        child: Column(
+          children: [
+            Text(
+              hadeth.titel,
+              style: const TextStyle(color: AppColors.blackColor, fontSize: 24),
+            ),
+            Expanded(
+              child: Text(
+                hadeth.Content.join(''),
+                style: const TextStyle(fontSize: 18),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

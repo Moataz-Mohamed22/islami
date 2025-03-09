@@ -1,57 +1,75 @@
 import 'package:flutter/material.dart';
-import 'package:islami/utils/appColors.dart';
-import 'package:islami/model/hadetModel.dart';
 
-class HadethDetalis extends StatelessWidget {
-  static const String routeName = "Hadeth Detalis";
+import '../../model/hadetModel.dart';
+import '../../utils/appColors.dart';
+
+
+class HadethDetails extends StatelessWidget {
+  static const String routeName = 'HadethDetails';
+
+  const HadethDetails({super.key});
+
   @override
   Widget build(BuildContext context) {
-    var args = ModalRoute.of(context)?.settings.arguments as HadethModel;
+    final hadeth = ModalRoute.of(context)?.settings.arguments as HadethModel;
+
     return Scaffold(
       appBar: AppBar(),
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
-          Container(
-            color: AppColors.blackBGColor,
-            child: Image.asset(
-              "assets/images/detalis_Bg.png",
-              width: double.infinity,
-              height: double.infinity,
-              fit: BoxFit.fill,
-            ),
-          ),
-          Column(
-            children: [
-              SizedBox(
-                height: 17,
-              ),
-              Text(
-                args.titel,
-                style: TextStyle(
-                    color: AppColors.primaryDark,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold),
-              ),
-              Expanded(
-                child: ListView.builder(
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 18),
-                      child: Text(
-                        args.Content[index],
-                        style: TextStyle(
-                            color: AppColors.primaryDark, fontSize: 18),
-                      ),
-                    );
-                  },
-                  itemCount: args.Content.length,
-                ),
-              )
-            ],
-          )
+          _buildBackground(),
+          _buildContent(hadeth),
         ],
+      ),
+    );
+  }
+
+  Widget _buildBackground() {
+    return Container(
+      color: AppColors.blackBGColor,
+      child: Image.asset(
+        'assets/images/detalis_Bg.png',
+        width: double.infinity,
+        height: double.infinity,
+        fit: BoxFit.fill,
+      ),
+    );
+  }
+
+  Widget _buildContent(HadethModel hadeth) {
+    return Column(
+      children: [
+        const SizedBox(height: 17),
+        _buildTitle(hadeth.titel),
+        _buildContentList(hadeth.Content),
+      ],
+    );
+  }
+
+  Widget _buildTitle(String title) {
+    return Text(
+      title,
+      style: const TextStyle(
+        color: AppColors.primaryDark,
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+
+  Widget _buildContentList(List<String> content) {
+    return Expanded(
+      child: ListView.builder(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 18),
+          child: Text(
+            content[index],
+            style: const TextStyle(color: AppColors.primaryDark, fontSize: 18),
+          ),
+        ),
+        itemCount: content.length,
       ),
     );
   }

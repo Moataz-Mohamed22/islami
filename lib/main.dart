@@ -21,8 +21,8 @@ class MyApp extends StatelessWidget {
           SuraDetalisScreen.routeName: (context) {
             return SuraDetalisScreen();
           },
-          HadethDetalis.routeName: (context) {
-            return HadethDetalis();
+          HadethDetails.routeName: (context) {
+            return HadethDetails();
           }
         },
         darkTheme: Mytheme.darkTheme,

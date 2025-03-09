@@ -21,4 +21,6 @@ class AppAssets {
  static String  backgroundRadioCo= "assets/images/Rectangle 132.png";
  static String  playSoundIcon= "assets/images/Polygon 2.png";
  static String  SoundIcon= "assets/images/Volume High.png";
+ static String  eveningAzkarIcon= "assets/images/eveningAzkarIcon.png";
+ static String  morningAzkarIcon= "assets/images/morningAzkarIcon.png";
 }
