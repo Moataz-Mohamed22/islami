@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:islami/utils/appColors.dart';
 import 'package:islami/utils/app_styles.dart';
 
+// ignore: must_be_immutable
 class SuraContentItem extends StatelessWidget {
   String content;
   int index;
