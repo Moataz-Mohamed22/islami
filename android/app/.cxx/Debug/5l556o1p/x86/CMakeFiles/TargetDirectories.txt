@@ -1,0 +1,2 @@
+E:/testcode/islamiApp/islami/android/app/.cxx/Debug/5l556o1p/x86/CMakeFiles/edit_cache.dir
+E:/testcode/islamiApp/islami/android/app/.cxx/Debug/5l556o1p/x86/CMakeFiles/rebuild_cache.dir

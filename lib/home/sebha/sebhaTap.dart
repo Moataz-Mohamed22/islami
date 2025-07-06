@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:islami/utils/appColors.dart';
 
-class SebhaTap extends StatefulWidget {
+import '../../core/utils/appColors.dart';
+
+class SebhaTab extends StatefulWidget {
   @override
-  State<SebhaTap> createState() => _SebhaTapState();
+  State<SebhaTab> createState() => _SebhaTabState();
 }
 
-class _SebhaTapState extends State<SebhaTap> {
+class _SebhaTabState extends State<SebhaTab> {
   int count = 0;
   String azkar = "سبحان الله";
   double turns = 0.0;
@@ -27,7 +28,7 @@ class _SebhaTapState extends State<SebhaTap> {
           ),
         ),
         Expanded(
-          child: InkWell(
+          child: GestureDetector(
             onTap: () {
               setState(() {
                 count++;

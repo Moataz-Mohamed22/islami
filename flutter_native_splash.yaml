@@ -1,21 +1,6 @@
-# flutter_native_splash-development.yaml
 flutter_native_splash:
   color: "#202020"
-  image: assets/images/splash_Screen.png
-  branding: assets/images/routegold.png
-  color_dark: "#202020"
-  image_dark: assets/images/splash_Screen.png
-  branding_dark: assets/images/routegold.png
-
+  image: assets/images/islami_splash_screen.png
   android_12:
-    image: assets/images/splash_Screen.png
-    branding: assets/images/routegold.png
+    image: assets/images/islami_splash_screen.png
     icon_background_color: "#202020"
-    image_dark: assets/images/splash_Screen.png
-    icon_background_color_dark: "#202020"
-    branding_dark: assets/images/routegold.png
-
-
-
-
-

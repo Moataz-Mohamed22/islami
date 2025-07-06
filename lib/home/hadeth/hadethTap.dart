@@ -2,21 +2,21 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../core/utils/appColors.dart';
 import '../../model/hadetModel.dart';
-import '../../utils/appColors.dart';
 import 'cubit/hadeth_state.dart';
 import 'cubit/hadeth_view_model.dart';
 import 'hadethDetalis.dart';
 
 
-class HadethTap extends StatefulWidget {
-  const HadethTap({super.key});
+class HadethTab extends StatefulWidget {
+  const HadethTab({super.key});
 
   @override
-  State<HadethTap> createState() => _HadethTapState();
+  State<HadethTab> createState() => _HadethTabState();
 }
 
-class _HadethTapState extends State<HadethTap> {
+class _HadethTabState extends State<HadethTab> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -85,12 +85,12 @@ class _HadethTapState extends State<HadethTap> {
         child: Column(
           children: [
             Text(
-              hadeth.titel,
+              hadeth.title,
               style: const TextStyle(color: AppColors.blackColor, fontSize: 24),
             ),
             Expanded(
               child: Text(
-                hadeth.Content.join(''),
+                hadeth.content.join(''),
                 style: const TextStyle(fontSize: 18),
               ),
             ),

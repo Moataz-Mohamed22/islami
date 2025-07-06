@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami/home/Quran/suraContentItem.dart';
-import 'package:islami/utils/appColors.dart';
 import 'package:islami/model/SuraModel.dart';
-import 'package:islami/utils/app_styles.dart';
+import '../../core/utils/appColors.dart';
+import '../../core/utils/app_styles.dart';
 
 class SuraDetalisScreen extends StatefulWidget {
   static String routeName = "Sura_detalis";

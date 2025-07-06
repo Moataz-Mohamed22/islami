@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../core/utils/appColors.dart';
 import '../../model/hadetModel.dart';
-import '../../utils/appColors.dart';
 
 
 class HadethDetails extends StatelessWidget {
@@ -41,8 +41,8 @@ class HadethDetails extends StatelessWidget {
     return Column(
       children: [
         const SizedBox(height: 17),
-        _buildTitle(hadeth.titel),
-        _buildContentList(hadeth.Content),
+        _buildTitle(hadeth.title),
+        _buildContentList(hadeth.content),
       ],
     );
   }

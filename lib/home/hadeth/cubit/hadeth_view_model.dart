@@ -19,7 +19,7 @@ class HadethCubit extends Cubit<HadethState> {
         final lines = content.split('\n');
         final title = lines[0];
         lines.removeAt(0);
-        hadethList.add(HadethModel(titel: title, Content: lines));
+        hadethList.add(HadethModel(title: title, content: lines));
       }
       emit(HadethLoaded(hadethList));
     } catch (e) {

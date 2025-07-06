@@ -1,5 +1,5 @@
 class HadethModel {
-  String titel;
-  List<String> Content;
-  HadethModel({required this.titel, required this.Content});
+  String title;
+  List<String> content;
+  HadethModel({required this.title, required this.content});
 }

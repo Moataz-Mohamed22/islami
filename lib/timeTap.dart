@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:islami/utils/App_assets.dart';
-
-class TimeTap extends StatefulWidget {
+import 'core/utils/App_assets.dart';
+class TimeTab extends StatefulWidget {
   @override
-  _TimeTapState createState() => _TimeTapState();
+  _TimeTabState createState() => _TimeTabState();
 }
 
-class _TimeTapState extends State<TimeTap> {
+class _TimeTabState extends State<TimeTab> {
   Map<String, dynamic>? prayerTimes;
 
   @override
@@ -17,9 +16,7 @@ class _TimeTapState extends State<TimeTap> {
     _fetchPrayerTimes();
   }
 
-  // Placeholder for API call (replace with your API endpoint)
   Future<void> _fetchPrayerTimes() async {
-    // Example API endpoint (e.g., Aladhan API: https://api.aladhan.com/v1/timingsByCity?city=City&country=Country&method=2)
     final response = await http.get(Uri.parse('YOUR_API_ENDPOINT_HERE'));
     if (response.statusCode == 200) {
       final data = json.decode(response.body);

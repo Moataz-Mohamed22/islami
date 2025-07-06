@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:islami/utils/appColors.dart';
 import 'package:islami/home/Radio/radioTap.dart';
 import 'package:islami/home/hadeth/hadethTap.dart';
 import 'package:islami/home/Quran/quranTab.dart';
 import 'package:islami/home/sebha/sebhaTap.dart';
 import 'package:islami/timeTap.dart';
 
+import 'core/utils/appColors.dart';
+
 class Homescreen extends StatefulWidget {
-  static const String routeName = "Home Screen";
 
   @override
   State<Homescreen> createState() => _HomescreenState();
@@ -24,10 +24,10 @@ class _HomescreenState extends State<Homescreen> {
   ];
   List<Widget> taps = [
     QuranTab(),
-    HadethTap(),
-    SebhaTap(),
-    RadioTap(),
-    TimeTap(),
+    HadethTab(),
+    SebhaTab(),
+    RadioTab(),
+    TimeTab(),
   ];
   @override
   Widget build(BuildContext context) {
